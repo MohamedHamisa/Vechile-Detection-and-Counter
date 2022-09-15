@@ -9,7 +9,7 @@ WebcamIsUsing=False
 if WebcamIsUsing: 
     cap=cv2.VideoCapture(0)
 else:
-    cap=cv2.VideoCapture("highway.mp4")
+    cap=cv2.VideoCapture("S.mp4")
 
 while True:
     _,img=cap.read()
@@ -23,7 +23,6 @@ while True:
     for cnt in cont:
         area=cv2.contourArea(cnt)
         if area>100:
-            #cv2.drawContours(roi,[cnt],-1,(0,255,0),2)
             x,y,w,h=cv2.boundingRect(cnt)
             det.append([x,y,w,h])
     
@@ -33,9 +32,9 @@ while True:
         cv2.putText(roi,str(id),(x,y-15),cv2.FONT_HERSHEY_SIMPLEX,2,(0,0,255),2)
         cv2.rectangle(roi,(x,y),(x+w,y+h),(0,0,255),3)
 
-    cv2.imshow("mask",mask)
-    cv2.imshow("roi",roi)
-    cv2.imshow("img",img)
+    cv2.imshow("MASK",mask)
+    cv2.imshow("ROI",roi)
+    cv2.imshow("IMG",img)
 
     key=cv2.waitKey(30)
     if key==113: #113=Q
